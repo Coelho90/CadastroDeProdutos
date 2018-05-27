@@ -1,0 +1,183 @@
+﻿<h4>Consulta de Produtos</h4>
+<br />
+
+<div>
+    {{mensagem}}
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <label>Filtrar resultados:</label>
+        <input type="text" class="form-control"
+               placeholder="Digite aqui"
+               ng-model="pesquisa" />
+    </div>
+</div>
+<br />
+
+<table class="table table-hover" ng-init="consultar()">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nome do Produto</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Data de Compra</th>
+            <th>Operações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="p in produtos | filter : pesquisa">
+            <td>{{p.IdProduto}}</td>
+            <td>{{p.Nome}}</td>
+            <td>{{p.Preco | currency : 'R$ '}}</td>
+            <td>{{p.Quantidade}}</td>
+            <td>{{p.Total | currency : 'R$ '}}</td>
+            <td>{{p.Status}}</td>
+            <td>{{p.DataCompra | date : 'dd/MM/yyyy'}}</td>
+            <td>
+
+                <button class="btn btn-primary btn-sm"
+                        data-target="#janelaedicao"
+                        data-toggle="modal"
+                        ng-click="obterporid(p.IdProduto)">
+                    Atualizar
+                </button>
+
+                <button class="btn btn-danger btn-sm"
+                        data-target="#janelaexclusao"
+                        data-toggle="modal"
+                        ng-click="obterporid(p.IdProduto)">
+                    Excluir
+                </button>
+
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="8">
+                Quantidade de Produtos: {{(produtos | filter : pesquisa).length}}
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<!-- janela modal para exclusão -->
+<div id="janelaexclusao" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h3 class="text-white">Exclusão de Produto</h3>
+            </div>
+            <div class="modal-body">
+
+                <strong>Deseja realmente excluir este produto?</strong>
+                <hr />
+
+                Código do Produto: {{produto.IdProduto}}
+                <br />
+
+                Nome: {{produto.Nome}}
+                <br />
+
+                Preço: {{produto.Preco | currency : 'R$ '}}
+                <br />
+
+                Quantidade: {{produto.Quantidade}}
+                <br />
+
+                Total: {{produto.Total | currency : 'R$ '}}
+                <br />
+
+                Status: {{produto.Status}}
+                <br />
+
+                Data de Compra: {{produto.DataCompra | date : 'dd/MM/yyyy'}}
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger"
+                        ng-click="excluir()"
+                        data-dismiss="modal">
+                    Confirmar Exclusão
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- janela modal para edição -->
+<div id="janelaedicao" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h3 class="text-white">Atualizar dados do Produto</h3>
+            </div>
+            <div class="modal-body">
+
+                <label>Código do Produto:</label>
+                <input type="text" class="form-control"
+                       ng-model="produto.IdProduto"
+                       readonly="readonly" />
+                <br />
+
+                <label>Nome do Produto:</label>
+                <input type="text" class="form-control"
+                       placeholder="Nome do Produto"
+                       ng-model="produto.Nome" />
+                <div class="text-danger" ng-repeat="e in erros['model.Nome']">
+                    <strong>{{e}}</strong>
+                </div>
+                <br />
+
+                <label>Preço:</label>
+                <input type="text" class="form-control"
+                       placeholder="Preço"
+                       ng-model="produto.Preco" />
+                <div class="text-danger" ng-repeat="e in erros['model.Preco']">
+                    <strong>{{e}}</strong>
+                </div>
+                <br />
+
+                <label>Quantidade:</label>
+                <input type="text" class="form-control"
+                       placeholder="Quantidade"
+                       ng-model="produto.Quantidade" />
+                <div class="text-danger" ng-repeat="e in erros['model.Quantidade']">
+                    <strong>{{e}}</strong>
+                </div>
+                <br />
+
+                <label>Status:</label>
+                <select class="form-control" ng-model="produto.Status">
+                    <option value="">Selecione uma Opção</option>
+                    <option value="Disponivel">Disponível</option>
+                    <option value="Esgotado">Esgotado</option>
+                </select>
+                <div class="text-danger" ng-repeat="e in erros['model.Status']">
+                    <strong>{{e}}</strong>
+                </div>
+                <br />
+
+                <label>Data de Compra:</label>
+                <input type="date" class="form-control"
+                       ng-model="produto.DataCompra"
+                       value="{{produto.DataCompra | date : 'yyyy-MM-dd'}}"
+                       readonly="readonly" />
+                <br />
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary"
+                        ng-click="atualizar()"
+                        data-dismiss="modal">
+                    Atualizar Produto
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

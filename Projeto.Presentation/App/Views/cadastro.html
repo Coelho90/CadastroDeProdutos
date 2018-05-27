@@ -1,0 +1,57 @@
+﻿<h4>Cadastro de Produtos:</h4>
+<br />
+
+<div class="row">
+    <div class="col-md-4">
+
+        <label>Nome do Produto:</label>
+        <input type="text" class="form-control"
+               placeholder="Nome do Produto"
+               ng-model="produto.Nome" />
+        <div class="text-danger" ng-repeat="e in erros['model.Nome']">
+            <strong>{{e}}</strong>
+        </div>
+        <br />
+
+        <label>Preço:</label>
+        <input type="text" class="form-control"
+               placeholder="Preço"
+               ng-model="produto.Preco" />
+        <div class="text-danger" ng-repeat="e in erros['model.Preco']">
+            <strong>{{e}}</strong>
+        </div>
+        <br />
+
+        <label>Quantidade:</label>
+        <input type="text" class="form-control"
+               placeholder="Quantidade"
+               ng-model="produto.Quantidade" />
+        <div class="text-danger" ng-repeat="e in erros['model.Quantidade']">
+            <strong>{{e}}</strong>
+        </div>
+        <br />
+
+        <label>Status:</label>
+        <select class="form-control" ng-model="produto.Status">
+            <option value="">Selecione uma Opção</option>
+            <option value="1">Disponível</option>
+            <option value="2">Esgotado</option>
+        </select>
+        <div class="text-danger" ng-repeat="e in erros['model.Status']">
+            <strong>{{e}}</strong>
+        </div>
+        <br />
+
+        <button class="btn btn-success"
+                ng-click="cadastrar()">
+            Cadastrar Produto
+        </button>
+        <br />
+        <br />
+
+        <div style="font-weight: bold;">
+            {{mensagem}}
+        </div>
+
+    </div>
+</div>

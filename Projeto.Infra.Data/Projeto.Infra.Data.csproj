@@ -51,7 +51,7 @@
     <Compile Include="Context\DataContext.cs" />
     <Compile Include="Mappings\ProdutoMap.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="ProdutoRepositorio.cs" />
+    <Compile Include="Repositories\ProdutoRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

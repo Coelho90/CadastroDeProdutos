@@ -13,19 +13,15 @@ namespace Projeto.Services.Utils
         {
             Hashtable mapa = new Hashtable();
 
-            foreach (var m in model)
+            foreach (var m in model) 
             {
-
-                if(m.Value.Errors.Count() > 0)
+                if (m.Value.Errors.Count() > 0) 
                 {
                     mapa[m.Key] = m.Value.Errors.Select(s => s.ErrorMessage).ToList();
                 }
-
             }
 
             return mapa;
         }
-
-
     }
 }

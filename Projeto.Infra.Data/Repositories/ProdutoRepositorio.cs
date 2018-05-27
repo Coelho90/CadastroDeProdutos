@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto.Infra.Data
+namespace Projeto.Infra.Data.Repositories
 {
     public class ProdutoRepositorio
     {
@@ -72,5 +72,16 @@ namespace Projeto.Infra.Data
                         .ToList();
             }
         }
+
+        public Produto FindById(int id)
+        {
+            using (DataContext d = new DataContext())
+            {
+                return d.Produto.Find(id);
+            }
+        }
+
+
+
     }
 }

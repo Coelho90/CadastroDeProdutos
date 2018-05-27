@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html ng-app="appProdutos">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+
+    
+    <script src="Scripts/jquery-3.0.0.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+
+   
+    <script src="App/routes.js"></script>
+    <script src="App/Controllers/produto-cadastro-controller.js"></script>
+    <script src="App/Controllers/produto-consulta-controller.js"></script>
+
+</head>
+<body class="container">
+
+    <h2>Sistema de Controle de Produtos</h2>
+    <a href="#produto/cadastro">Cadastrar novo produto</a> | <a href="#produto/consulta">Consultar produtos</a>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12">
+
+            
+            <div ng-view></div>
+
+        </div>
+    </div>
+
+</body>
+</html>
